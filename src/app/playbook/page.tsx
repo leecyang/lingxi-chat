@@ -48,7 +48,7 @@ export default function PlaybookPage() {
           {availableAgents.map((agent) => {
             const Icon = agent.icon;
             return (
-              <Card key={agent.name} className="flex flex-col hover:shadow-lg hover:-translate-y-1 transition-transform duration-300">
+              <Card key={agent.name} className="flex flex-col hover:shadow-lg hover:-translate-y-1 transition-transform duration-300 bg-card/60 backdrop-blur-lg border-border/20">
                 <CardHeader className="flex-row items-center gap-4">
                   <div className="p-3 bg-primary/10 rounded-lg">
                     <Icon className="w-8 h-8 text-primary" />

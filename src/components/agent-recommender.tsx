@@ -53,7 +53,7 @@ export default function AgentRecommender() {
   }
 
   return (
-    <Card className="shadow-lg border-2 border-primary/20">
+    <Card className="shadow-lg border-2 border-primary/20 bg-card/60 backdrop-blur-lg">
       <CardHeader>
         <div className="flex items-center gap-3">
           <Sparkles className="w-8 h-8 text-accent" />

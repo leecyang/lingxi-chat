@@ -32,7 +32,7 @@ export default function LoginPage() {
 
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-10rem)] bg-muted/20 py-12">
-      <Card className="w-full max-w-md shadow-2xl">
+      <Card className="w-full max-w-md shadow-2xl bg-card/60 backdrop-blur-lg border-primary/20">
         <CardHeader className="text-center">
           <CardTitle className="text-3xl font-headline">欢迎回来</CardTitle>
           <CardDescription>登录您的灵犀智学账户</CardDescription>

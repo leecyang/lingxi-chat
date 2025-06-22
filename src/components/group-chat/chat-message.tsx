@@ -44,8 +44,11 @@ export default function ChatMessage({ message }: { message: Message }) {
         </Avatar>
       )}
 
-      <div className={cn('max-w-md lg:max-w-xl rounded-2xl px-4 py-3 shadow-md flex flex-col', 
-        isUser ? 'bg-primary text-primary-foreground rounded-br-none' : 'bg-card text-card-foreground rounded-bl-none'
+      <div className={cn(
+        'max-w-md lg:max-w-xl rounded-2xl px-4 py-3 shadow-md flex flex-col', 
+        isUser 
+          ? 'bg-primary text-primary-foreground rounded-br-none' 
+          : 'bg-card/60 backdrop-blur-lg text-card-foreground rounded-bl-none border border-border/20'
       )}>
         {!isUser && (
             <p className="text-sm font-bold text-accent mb-1">{agent?.name}</p>

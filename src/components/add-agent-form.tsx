@@ -48,7 +48,7 @@ export default function AddAgentForm() {
   }
 
   return (
-    <Card className="shadow-lg">
+    <Card className="shadow-lg bg-card/60 backdrop-blur-lg border-border/20">
       <CardHeader>
         <CardTitle className="font-headline text-xl">智能体信息</CardTitle>
         <CardDescription>填写新智能体的详细信息并提供API端点。</CardDescription>

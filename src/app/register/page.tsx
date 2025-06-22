@@ -59,7 +59,7 @@ export default function RegisterPage() {
 
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-10rem)] bg-muted/20 py-12">
-      <Card className="w-full max-w-lg shadow-2xl">
+      <Card className="w-full max-w-lg shadow-2xl bg-card/60 backdrop-blur-lg border-primary/20">
         <CardHeader className="text-center">
           <CardTitle className="text-3xl font-headline">创建您的账户</CardTitle>
           <CardDescription>加入灵犀智学，开启智能学习之旅</CardDescription>

@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="container mx-auto px-4 py-12 sm:py-24">
       <section className="text-center">
-        <h1 className="text-4xl md:text-6xl font-bold font-headline bg-gradient-to-r from-primary to-blue-400 text-transparent bg-clip-text">
+        <h1 className="text-4xl md:text-6xl font-bold font-headline bg-gradient-to-r from-primary to-accent text-transparent bg-clip-text">
           灵犀智学 Lite
         </h1>
         <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
@@ -31,7 +31,7 @@ export default function Home() {
           <p className="text-muted-foreground mt-2">无论你是学生、开发者还是管理员，都能找到适合你的工具。</p>
         </div>
         <div className="grid md:grid-cols-3 gap-8">
-          <Card className="hover:shadow-lg hover:-translate-y-1 transition-transform duration-300">
+          <Card className="hover:shadow-lg hover:-translate-y-1 transition-transform duration-300 bg-card/60 backdrop-blur-lg border-border/20">
             <CardHeader className="items-center text-center">
               <div className="p-4 bg-accent/10 rounded-full">
                 <User className="w-10 h-10 text-accent" />
@@ -48,7 +48,7 @@ export default function Home() {
             </CardContent>
           </Card>
 
-          <Card className="hover:shadow-lg hover:-translate-y-1 transition-transform duration-300">
+          <Card className="hover:shadow-lg hover:-translate-y-1 transition-transform duration-300 bg-card/60 backdrop-blur-lg border-border/20">
             <CardHeader className="items-center text-center">
               <div className="p-4 bg-accent/10 rounded-full">
                 <Code className="w-10 h-10 text-accent" />
@@ -65,7 +65,7 @@ export default function Home() {
             </CardContent>
           </Card>
 
-          <Card className="hover:shadow-lg hover:-translate-y-1 transition-transform duration-300">
+          <Card className="hover:shadow-lg hover:-translate-y-1 transition-transform duration-300 bg-card/60 backdrop-blur-lg border-border/20">
             <CardHeader className="items-center text-center">
               <div className="p-4 bg-accent/10 rounded-full">
                 <Shield className="w-10 h-10 text-accent" />

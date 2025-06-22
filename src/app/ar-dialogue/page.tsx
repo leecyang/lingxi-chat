@@ -15,8 +15,8 @@ export default function ARDialoguePage() {
 
       <div className="grid lg:grid-cols-3 gap-8 items-start">
         <div className="lg:col-span-2">
-          <Card className="overflow-hidden shadow-2xl">
-            <div className="relative aspect-video bg-gray-900 flex items-center justify-center">
+          <Card className="overflow-hidden shadow-2xl bg-card/60 backdrop-blur-lg border-primary/20">
+            <div className="relative aspect-video bg-gray-900/50 flex items-center justify-center">
               <Image
                 src="https://placehold.co/800x450.png"
                 alt="AR虚拟教师"
@@ -44,7 +44,7 @@ export default function ARDialoguePage() {
           </Card>
         </div>
 
-        <Card className="sticky top-20">
+        <Card className="sticky top-20 bg-card/60 backdrop-blur-lg border-primary/20">
           <CardHeader>
             <CardTitle className="font-headline">控制面板</CardTitle>
             <CardDescription>调整您的AR体验设置</CardDescription>
