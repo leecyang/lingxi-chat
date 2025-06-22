@@ -16,6 +16,9 @@ export default function Header() {
           <Link href="/playbook" className="text-muted-foreground transition-colors hover:text-foreground">
             Playbook
           </Link>
+          <Link href="/group-chat" className="text-muted-foreground transition-colors hover:text-foreground">
+            群聊
+          </Link>
           <Link href="/ar-dialogue" className="text-muted-foreground transition-colors hover:text-foreground">
             AR 对话
           </Link>
