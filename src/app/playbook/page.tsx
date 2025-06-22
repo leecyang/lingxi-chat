@@ -1,13 +1,16 @@
+'use client';
+
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { availableAgents } from '@/lib/agents';
 import AgentRecommender from '@/components/agent-recommender';
 import AddAgentForm from '@/components/add-agent-form';
 import { Separator } from '@/components/ui/separator';
 import { PlusCircle } from 'lucide-react';
+import { useAuth } from '@/contexts/auth-context';
 
 export default function PlaybookPage() {
-  // TODO: Add logic to check if user is a teacher or developer
-  const isPrivilegedUser = true; // Mocked value
+  const { user } = useAuth();
+  const isPrivilegedUser = user?.role === 'teacher' || user?.role === 'developer';
 
   return (
     <div className="container mx-auto px-4 py-12">

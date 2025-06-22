@@ -7,6 +7,7 @@ import AgentBar from '@/components/group-chat/agent-bar';
 import { availableAgents } from '@/lib/agents';
 import type { Message } from '@/lib/chat-types';
 import { format } from 'date-fns';
+import ProtectedRoute from '@/components/auth/protected-route';
 
 const initialMessage: Message = {
   id: 'system-initial',
@@ -58,13 +59,15 @@ export default function GroupChatPage() {
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-3.5rem)] bg-background">
-      {/* The header is h-14 (3.5rem), so we subtract that from viewport height */}
-      <ChatWindow messages={messages} />
-      <div className="flex-shrink-0">
-        <AgentBar />
-        <MessageInput onSendMessage={handleSendMessage} isLoading={isLoading} />
+    <ProtectedRoute>
+      <div className="flex flex-col h-[calc(100vh-3.5rem)] bg-background">
+        {/* The header is h-14 (3.5rem), so we subtract that from viewport height */}
+        <ChatWindow messages={messages} />
+        <div className="flex-shrink-0">
+          <AgentBar />
+          <MessageInput onSendMessage={handleSendMessage} isLoading={isLoading} />
+        </div>
       </div>
-    </div>
+    </ProtectedRoute>
   );
 }

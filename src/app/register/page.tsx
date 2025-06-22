@@ -11,6 +11,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import { useAuth } from '@/contexts/auth-context';
 
 const studentSchema = z.object({
   name: z.string().min(2, { message: '请输入真实姓名' }),
@@ -28,6 +29,8 @@ const teacherSchema = z.object({
 });
 
 export default function RegisterPage() {
+  const { login } = useAuth();
+  
   const studentForm = useForm<z.infer<typeof studentSchema>>({
     resolver: zodResolver(studentSchema),
     defaultValues: {
@@ -51,10 +54,18 @@ export default function RegisterPage() {
 
   function onStudentSubmit(values: z.infer<typeof studentSchema>) {
     console.log('Student registration:', values);
+    login({
+      name: values.name,
+      role: values.isDeveloper ? 'developer' : 'student'
+    });
   }
 
   function onTeacherSubmit(values: z.infer<typeof teacherSchema>) {
     console.log('Teacher registration:', values);
+    login({
+      name: values.name,
+      role: 'teacher'
+    });
   }
 
   return (

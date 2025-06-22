@@ -9,6 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import { useAuth } from '@/contexts/auth-context';
 
 const formSchema = z.object({
   username: z.string().min(1, { message: '请输入您的学号或姓名' }),
@@ -16,6 +17,7 @@ const formSchema = z.object({
 });
 
 export default function LoginPage() {
+  const { login } = useAuth();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -27,7 +29,13 @@ export default function LoginPage() {
   function onSubmit(values: z.infer<typeof formSchema>) {
     // Handle login logic here
     console.log(values);
-    // On success, redirect to another page
+    // On success, call login and redirect.
+    // This is a mock authentication.
+    const isTeacher = values.username.toLowerCase().includes('老师') || values.username.toLowerCase().includes('teacher');
+    login({ 
+        name: values.username, 
+        role: isTeacher ? 'teacher' : 'student'
+    });
   }
 
   return (
