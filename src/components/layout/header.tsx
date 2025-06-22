@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { BrainCircuit } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -19,8 +21,12 @@ export default function Header() {
           </Link>
         </nav>
         <div className="flex flex-1 items-center justify-end gap-2">
-          <Button variant="ghost">登录</Button>
-          <Button>注册</Button>
+          <Button variant="ghost" asChild>
+            <Link href="/login">登录</Link>
+          </Button>
+          <Button asChild>
+            <Link href="/register">注册</Link>
+          </Button>
         </div>
       </div>
     </header>
