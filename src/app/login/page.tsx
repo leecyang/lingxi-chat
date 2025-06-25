@@ -31,10 +31,19 @@ export default function LoginPage() {
     console.log(values);
     // On success, call login and redirect.
     // This is a mock authentication.
+    const isAdmin = values.username.toLowerCase() === 'admin';
     const isTeacher = values.username.toLowerCase().includes('老师') || values.username.toLowerCase().includes('teacher');
+    
+    let role: 'student' | 'teacher' | 'admin' = 'student';
+    if (isAdmin) {
+      role = 'admin';
+    } else if (isTeacher) {
+      role = 'teacher';
+    }
+
     login({ 
         name: values.username, 
-        role: isTeacher ? 'teacher' : 'student'
+        role: role
     });
   }
 
@@ -43,7 +52,7 @@ export default function LoginPage() {
       <Card className="w-full max-w-md shadow-2xl bg-card/60 backdrop-blur-lg border-primary/20">
         <CardHeader className="text-center">
           <CardTitle className="text-3xl font-headline">欢迎回来</CardTitle>
-          <CardDescription>登录您的灵犀智学账户</CardDescription>
+          <CardDescription>登录您的灵犀智学账户 (可使用 'admin' 登录)</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -53,7 +62,7 @@ export default function LoginPage() {
                 name="username"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>学号 / 姓名</FormLabel>
+                    <FormLabel>学号 / 姓名 / 管理员</FormLabel>
                     <FormControl>
                       <Input placeholder="请输入您的学号或教师姓名" {...field} />
                     </FormControl>

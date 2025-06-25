@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 
 interface User {
   name: string;
-  role: 'student' | 'teacher' | 'developer';
+  role: 'student' | 'teacher' | 'developer' | 'admin';
 }
 
 interface AuthContextType {
@@ -29,7 +29,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const login = (userData: User) => {
     setUser(userData);
-    router.push('/group-chat');
+    if (userData.role === 'admin') {
+        router.push('/admin');
+    } else {
+        router.push('/group-chat');
+    }
   };
 
   const logout = () => {

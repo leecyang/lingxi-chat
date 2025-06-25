@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { BrainCircuit, LogOut } from 'lucide-react';
+import { BrainCircuit, LogOut, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/auth-context';
 import {
@@ -12,10 +12,20 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 
 export default function Header() {
   const { user, logout } = useAuth();
+
+  const getRoleName = (role: string | undefined) => {
+    switch (role) {
+      case 'admin': return '管理员';
+      case 'teacher': return '教师';
+      case 'developer': return '开发者';
+      case 'student': return '学生';
+      default: return '';
+    }
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -36,6 +46,12 @@ export default function Header() {
               <Link href="/ar-dialogue" className="text-muted-foreground transition-colors hover:text-foreground">
                 AR 对话
               </Link>
+              {user.role === 'admin' && (
+                  <Link href="/admin" className="text-muted-foreground transition-colors hover:text-foreground flex items-center gap-1">
+                      <Shield className="h-4 w-4" />
+                      管理后台
+                  </Link>
+              )}
             </>
           )}
         </nav>
@@ -54,7 +70,7 @@ export default function Header() {
                   <div className="flex flex-col space-y-1">
                     <p className="text-sm font-medium leading-none">{user.name}</p>
                     <p className="text-xs leading-none text-muted-foreground">
-                      {user.role === 'teacher' ? '教师' : user.role === 'developer' ? '开发者' : '学生'}
+                      {getRoleName(user.role)}
                     </p>
                   </div>
                 </DropdownMenuLabel>
