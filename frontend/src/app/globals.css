@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Gemini风格的白色主题配色 */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 15%;
+    
+    /* 彩虹色主色调 */
+    --primary: 220 100% 60%; /* 蓝色 */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 15%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    
+    /* 彩虹色强调色 */
+    --accent: 280 100% 70%; /* 紫色 */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* 边框和输入框 */
+    --border: 0 0% 90%;
+    --input: 0 0% 96%;
+    --ring: 220 100% 60%;
+    --radius: 0.75rem;
+    
+    /* 彩虹图表颜色 */
+    --chart-1: 220 100% 60%; /* 蓝色 */
+    --chart-2: 280 100% 70%; /* 紫色 */
+    --chart-3: 160 100% 45%; /* 绿色 */
+    --chart-4: 30 100% 55%;  /* 橙色 */
+    --chart-5: 340 100% 60%; /* 粉色 */
+    
+    /* 侧边栏 */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 15%;
+    --sidebar-primary: 220 100% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 280 100% 70%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 220 100% 60%;
+    
+    /* 彩虹渐变变量 */
+    --rainbow-gradient: linear-gradient(135deg, 
+      hsl(220, 100%, 60%) 0%,
+      hsl(280, 100%, 70%) 25%,
+      hsl(160, 100%, 45%) 50%,
+      hsl(30, 100%, 55%) 75%,
+      hsl(340, 100%, 60%) 100%);
+  }
+
+  /* 移除暗色主题，专注于白色简约风格 */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    /* Gemini风格的简洁背景 */
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 1) 0%,
+      rgba(248, 250, 252, 0.8) 100%);
+    min-height: 100vh;
+  }
+  
+  /* 修复浏览器自动填充时的样式问题 */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px hsl(var(--background)) inset !important;
+    -webkit-text-fill-color: hsl(var(--foreground)) !important;
+    box-shadow: 0 0 0 30px hsl(var(--background)) inset !important;
+    color: hsl(var(--foreground)) !important;
+    background-color: hsl(var(--background)) !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+  
+  /* 确保自动填充时保持正确的边框样式 */
+  input:-webkit-autofill {
+    border: 1px solid hsl(var(--border)) !important;
+  }
+  
+  input:-webkit-autofill:focus {
+    border: 2px solid hsl(var(--ring)) !important;
+    outline: none !important;
+  }
+}
+
+/* 彩虹渐变工具类 */
+@layer utilities {
+  .rainbow-gradient {
+    background: var(--rainbow-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    animation: rainbow-shift 3s ease-in-out infinite;
+  }
+  
+  .rainbow-border {
+    border: 2px solid transparent;
+    background: var(--rainbow-gradient) border-box;
+    background-clip: padding-box, border-box;
+  }
+  
+  .glass-effect {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+}
+
+@keyframes rainbow-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}

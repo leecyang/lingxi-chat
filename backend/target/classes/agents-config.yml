@@ -1,0 +1,149 @@
+# 智能体配置文件
+# 按照功能类别划分的智能体配置
+
+agents:
+  # 德育引导类
+  moral_education:
+    - name: "青藤心桥"
+      modelId: "6867fda14c78b04e5ad1b603"
+      category: "德育引导"
+      description: "心理健康咨询与情感支持智能体"
+      endpoint: "https://jiutian.10086.cn/largemodel/api/v1/completions"
+      apiKey: "686b39b2b381ac407d61459f"
+      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhcGlfa2V5IjoiNjg2YjM5YjJiMzgxYWM0MDdkNjE0NTlmIiwiZXhwIjoxNzUxOTQxNzU5LCJ0aW1lc3RhbXAiOjE3NTE4ODE3NTl9.P4fzhKVNbUPt4vWN5v8eRG_8XPGT5gd5VxsZYj4wgTE"
+      tags: ["心理健康", "情感支持", "德育"]
+      config:
+        temperature: 0.7
+        max_tokens: 2048
+        top_p: 0.9
+
+  # 智育助力类
+  intellectual_education:
+    - name: "问答回廊"
+      modelId: "6867fda14c78b04e5ad1b604"
+      category: "智育助力"
+      description: "学术问答与知识解答智能体"
+      endpoint: "https://jiutian.10086.cn/largemodel/api/v1/completions"
+      apiKey: "686b39b2b381ac407d61459f"
+      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhcGlfa2V5IjoiNjg2YjM5YjJiMzgxYWM0MDdkNjE0NTlmIiwiZXhwIjoxNzUxOTQxNzU5LCJ0aW1lc3RhbXAiOjE3NTE4ODE3NTl9.P4fzhKVNbUPt4vWN5v8eRG_8XPGT5gd5VxsZYj4wgTE"
+      tags: ["学术问答", "知识解答", "智育"]
+      config:
+        temperature: 0.5
+        max_tokens: 2048
+        top_p: 0.8
+
+    - name: "选课推荐"
+      modelId: "6867fda14c78b04e5ad1b605"
+      category: "智育助力"
+      description: "课程推荐与学习规划智能体"
+      endpoint: "https://jiutian.10086.cn/largemodel/api/v1/completions"
+      apiKey: "686b39b2b381ac407d61459f"
+      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhcGlfa2V5IjoiNjg2YjM5YjJiMzgxYWM0MDdkNjE0NTlmIiwiZXhwIjoxNzUxOTQxNzU5LCJ0aW1lc3RhbXAiOjE3NTE4ODE3NTl9.P4fzhKVNbUPt4vWN5v8eRG_8XPGT5gd5VxsZYj4wgTE"
+      tags: ["选课推荐", "学习规划", "智育"]
+      config:
+        temperature: 0.6
+        max_tokens: 1024
+        top_p: 0.85
+
+  # 体育赋能类
+  physical_education:
+    - name: "时间管理小助手"
+      modelId: "6867fda14c78b04e5ad1b606"
+      category: "体育赋能"
+      description: "运动计划与时间管理智能体"
+      endpoint: "https://jiutian.10086.cn/largemodel/api/v1/completions"
+      apiKey: "686b39b2b381ac407d61459f"
+      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhcGlfa2V5IjoiNjg2YjM5YjJiMzgxYWM0MDdkNjE0NTlmIiwiZXhwIjoxNzUxOTQxNzU5LCJ0aW1lc3RhbXAiOjE3NTE4ODE3NTl9.P4fzhKVNbUPt4vWN5v8eRG_8XPGT5gd5VxsZYj4wgTE"
+      tags: ["时间管理", "运动计划", "体育"]
+      config:
+        temperature: 0.7
+        max_tokens: 1024
+        top_p: 0.9
+
+  # 美育熏陶类
+  aesthetic_education:
+    - name: "美育熏陶助手"
+      modelId: "6867fda14c78b04e5ad1b607"
+      category: "美育熏陶"
+      description: "艺术欣赏与美学教育智能体"
+      endpoint: "https://jiutian.10086.cn/largemodel/api/v1/completions"
+      apiKey: "686b39b2b381ac407d61459f"
+      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhcGlfa2V5IjoiNjg2YjM5YjJiMzgxYWM0MDdkNjE0NTlmIiwiZXhwIjoxNzUxOTQxNzU5LCJ0aW1lc3RhbXAiOjE3NTE4ODE3NTl9.P4fzhKVNbUPt4vWN5v8eRG_8XPGT5gd5VxsZYj4wgTE"
+      tags: ["艺术欣赏", "美学教育", "美育"]
+      config:
+        temperature: 0.8
+        max_tokens: 1536
+        top_p: 0.9
+
+  # 劳育实践类
+  labor_education:
+    - name: "劳育实践指导"
+      modelId: "6867fda14c78b04e5ad1b608"
+      category: "劳育实践"
+      description: "实践技能与劳动教育智能体"
+      endpoint: "https://jiutian.10086.cn/largemodel/api/v1/completions"
+      apiKey: "686b39b2b381ac407d61459f"
+      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhcGlfa2V5IjoiNjg2YjM5YjJiMzgxYWM0MDdkNjE0NTlmIiwiZXhwIjoxNzUxOTQxNzU5LCJ0aW1lc3RhbXAiOjE3NTE4ODE3NTl9.P4fzhKVNbUPt4vWN5v8eRG_8XPGT5gd5VxsZYj4wgTE"
+      tags: ["实践技能", "劳动教育", "劳育"]
+      config:
+        temperature: 0.6
+        max_tokens: 1024
+        top_p: 0.85
+
+  # 生活护航类
+  life_support:
+    - name: "膳食管理"
+      modelId: "6867fda14c78b04e5ad1b609"
+      category: "生活护航"
+      description: "营养膳食与健康管理智能体"
+      endpoint: "https://jiutian.10086.cn/largemodel/api/v1/completions"
+      apiKey: "686b39b2b381ac407d61459f"
+      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhcGlfa2V5IjoiNjg2YjM5YjJiMzgxYWM0MDdkNjE0NTlmIiwiZXhwIjoxNzUxOTQxNzU5LCJ0aW1lc3RhbXAiOjE3NTE4ODE3NTl9.P4fzhKVNbUPt4vWN5v8eRG_8XPGT5gd5VxsZYj4wgTE"
+      tags: ["膳食管理", "健康管理", "生活"]
+      config:
+        temperature: 0.7
+        max_tokens: 1024
+        top_p: 0.9
+
+    - name: "搭子匹配"
+      modelId: "6867fda14c78b04e5ad1b610"
+      category: "生活护航"
+      description: "社交匹配与人际关系智能体"
+      endpoint: "https://jiutian.10086.cn/largemodel/api/v1/completions"
+      apiKey: "686b39b2b381ac407d61459f"
+      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhcGlfa2V5IjoiNjg2YjM5YjJiMzgxYWM0MDdkNjE0NTlmIiwiZXhwIjoxNzUxOTQxNzU5LCJ0aW1lc3RhbXAiOjE3NTE4ODE3NTl9.P4fzhKVNbUPt4vWN5v8eRG_8XPGT5gd5VxsZYj4wgTE"
+      tags: ["社交匹配", "人际关系", "生活"]
+      config:
+        temperature: 0.8
+        max_tokens: 1024
+        top_p: 0.9
+
+  # 统筹智能体类
+  general_ai:
+    - name: "灵犀"
+      modelId: "6867fda14c78b04e5ad1b611"
+      category: "统筹智能体"
+      description: "综合智能助手，统筹各类服务"
+      endpoint: "https://jiutian.10086.cn/largemodel/api/v1/completions"
+      apiKey: "686b39b2b381ac407d61459f"
+      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhcGlfa2V5IjoiNjg2YjM5YjJiMzgxYWM0MDdkNjE0NTlmIiwiZXhwIjoxNzUxOTQxNzU5LCJ0aW1lc3RhbXAiOjE3NTE4ODE3NTl9.P4fzhKVNbUPt4vWN5v8eRG_8XPGT5gd5VxsZYj4wgTE"
+      tags: ["综合助手", "统筹服务", "通用"]
+      config:
+        temperature: 0.7
+        max_tokens: 2048
+        top_p: 0.9
+
+# 默认配置
+default_config:
+  temperature: 0.7
+  max_tokens: 1024
+  top_p: 0.9
+  timeout: 30000
+  max_retries: 3
+  retry_delay: 1000
+
+# 九天平台配置
+jiutian:
+  base_url: "https://jiutian.10086.cn/largemodel/api/v1"
+  default_endpoint: "https://jiutian.10086.cn/largemodel/api/v1/completions"
+  token_refresh_url: "https://jiutian.10086.cn/largemodel/api/v1/token/refresh"

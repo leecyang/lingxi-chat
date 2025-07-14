@@ -1,0 +1,331 @@
+spring:
+  application:
+    name: lingxi-chat
+  
+  # 数据库配置
+  datasource:
+    url: jdbc:mysql://localhost:3306/lingxi_chat?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:123456}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      leak-detection-threshold: 60000
+  
+  # JPA配置
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+        use_sql_comments: true
+        jdbc:
+          batch_size: 20
+        order_inserts: true
+        order_updates: true
+    open-in-view: false
+  
+  # 数据库初始化配置
+  sql:
+    init:
+      mode: never
+      encoding: utf-8
+      continue-on-error: false
+  
+  # Redis配置
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      database: 0
+      timeout: 5000ms
+      lettuce:
+        pool:
+          max-active: 20
+          max-idle: 10
+          min-idle: 5
+          max-wait: 2000ms
+  
+  # 缓存配置
+  cache:
+    type: redis
+    redis:
+      time-to-live: 3600000  # 1小时
+      cache-null-values: false
+  
+  # Jackson配置
+  jackson:
+    time-zone: Asia/Shanghai
+    date-format: yyyy-MM-dd HH:mm:ss
+    serialization:
+      write-dates-as-timestamps: false
+    deserialization:
+      fail-on-unknown-properties: false
+  
+  # 文件上传配置
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 50MB
+      enabled: true
+  
+  # 邮件配置
+  mail:
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          ssl:
+            trust: ${MAIL_HOST:smtp.gmail.com}
+  
+  # 异步配置
+  task:
+    execution:
+      pool:
+        core-size: 5
+        max-size: 20
+        queue-capacity: 100
+        keep-alive: 60s
+      thread-name-prefix: lingxi-async-
+    scheduling:
+      pool:
+        size: 5
+      thread-name-prefix: lingxi-scheduled-
+
+# 服务器配置
+server:
+  port: ${SERVER_PORT:8080}
+  servlet:
+    context-path: /api
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  compression:
+    enabled: true
+    mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json
+    min-response-size: 1024
+  error:
+    include-message: always
+    include-binding-errors: always
+    include-stacktrace: on_param
+    include-exception: false
+
+# 应用程序自定义配置
+app:
+  # JWT配置
+  jwt:
+    secret: ${JWT_SECRET:lingxi-chat-jwt-secret-key-2024-very-long-and-secure}
+    access-token-expiration: ${JWT_ACCESS_EXPIRATION:86400000}  # 24小时
+    refresh-token-expiration: ${JWT_REFRESH_EXPIRATION:604800000}  # 7天
+    issuer: lingxi-chat
+  
+  # 九天API配置
+  jiutian:
+    base-url: ${JIUTIAN_BASE_URL:https://api.jiutian.ai}
+    api-key: ${JIUTIAN_API_KEY:}
+    timeout: ${JIUTIAN_TIMEOUT:30000}
+    max-retries: ${JIUTIAN_MAX_RETRIES:3}
+    retry-delay: ${JIUTIAN_RETRY_DELAY:1000}
+
+  # 文件存储配置
+  storage:
+    type: ${STORAGE_TYPE:local}  # local, oss, s3
+    local:
+      upload-dir: ${LOCAL_UPLOAD_DIR:./uploads}
+      base-url: ${LOCAL_BASE_URL:http://localhost:8080/api/files}
+    oss:
+      endpoint: ${OSS_ENDPOINT:}
+      access-key-id: ${OSS_ACCESS_KEY_ID:}
+      access-key-secret: ${OSS_ACCESS_KEY_SECRET:}
+      bucket-name: ${OSS_BUCKET_NAME:}
+      base-url: ${OSS_BASE_URL:}
+  
+  # 安全配置
+  security:
+    cors:
+      allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:3000,http://localhost:9002}
+      allowed-methods: GET,POST,PUT,DELETE,OPTIONS,PATCH
+      allowed-headers: "*"
+      allow-credentials: true
+      max-age: 3600
+    rate-limit:
+      enabled: ${RATE_LIMIT_ENABLED:true}
+      requests-per-minute: ${RATE_LIMIT_RPM:60}
+      requests-per-hour: ${RATE_LIMIT_RPH:1000}
+  
+  # 业务配置
+  business:
+    # 用户配置
+    user:
+      max-login-attempts: ${MAX_LOGIN_ATTEMPTS:5}
+      lockout-duration: ${LOCKOUT_DURATION:1800000}  # 30分钟
+      password-min-length: ${PASSWORD_MIN_LENGTH:6}
+      password-max-length: ${PASSWORD_MAX_LENGTH:50}
+    
+    # 聊天配置
+    chat:
+      max-history-size: ${CHAT_MAX_HISTORY:50}
+      max-message-length: ${CHAT_MAX_MESSAGE_LENGTH:4000}
+      session-timeout: ${CHAT_SESSION_TIMEOUT:3600000}  # 1小时
+      enable-emotion-analysis: ${CHAT_ENABLE_EMOTION:true}
+    
+    # 智能体配置
+    agent:
+      max-agents-per-user: ${MAX_AGENTS_PER_USER:10}
+      default-max-tokens: ${AGENT_DEFAULT_MAX_TOKENS:2000}
+      default-temperature: ${AGENT_DEFAULT_TEMPERATURE:0.7}
+      default-top-p: ${AGENT_DEFAULT_TOP_P:0.9}
+    
+    # 成绩配置
+    grade:
+      max-records-per-batch: ${GRADE_MAX_BATCH:100}
+      enable-prediction: ${GRADE_ENABLE_PREDICTION:true}
+      prediction-model-path: ${GRADE_MODEL_PATH:./models/grade_prediction.pt}
+
+# DJL模型配置
+djl:
+  models:
+    emotion-analysis:
+      model-path: ${DJL_EMOTION_MODEL_PATH:models/emotion_analysis.pt}
+      batch-size: 32
+    grade-prediction:
+      model-path: ${DJL_GRADE_MODEL_PATH:models/grade_prediction.pt}
+      batch-size: 16
+  device: cpu
+  cache-size: 100
+
+# WebSocket配置
+websocket:
+  allowed-origins: ${WEBSOCKET_ORIGINS:http://localhost:3000,http://localhost:9002}
+  max-sessions: 1000
+  message-size-limit: 65536
+
+# 日志配置
+logging:
+  level:
+    com.lingxi: ${LOG_LEVEL:INFO}
+    org.springframework.security: WARN
+    org.hibernate.SQL: WARN
+    org.hibernate.type.descriptor.sql.BasicBinder: WARN
+    org.springframework.web.socket: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: ${LOG_FILE:./logs/lingxi-chat.log}
+    max-size: 100MB
+    max-history: 30
+    total-size-cap: 1GB
+
+# 监控配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: when-authorized
+      show-components: always
+  health:
+    redis:
+      enabled: true
+    db:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    tags:
+      application: ${spring.application.name}
+
+# 开发环境配置
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+logging:
+  level:
+    com.lingxi: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+
+app:
+  security:
+    rate-limit:
+      enabled: false
+
+---
+# 生产环境配置
+spring:
+  config:
+    activate:
+      on-profile: prod
+  
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+
+logging:
+  level:
+    com.lingxi: INFO
+    org.springframework.web: WARN
+    org.springframework.security: WARN
+
+app:
+  security:
+    rate-limit:
+      enabled: true
+
+---
+# 测试环境配置
+spring:
+  config:
+    activate:
+      on-profile: test
+  
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: 
+  
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.H2Dialect
+  
+  h2:
+    console:
+      enabled: true
+
+logging:
+  level:
+    com.lingxi: DEBUG
